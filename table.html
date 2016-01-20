@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
+
+	<!-- jQuery basic -->
+	<script src="js/jquery-latest.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" href="css/jq.css">
+	<link class="theme blue" rel="stylesheet" href="css/theme.blue.css">
+	<link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
+
+	<!-- Tablesorter:-->
+	<script src="js/jquery.tablesorter.js"></script>
+	<script src="js/jquery.tablesorter.pager.js"></script>
+	<script src="js/jquery.tablesorter.widgets.js"></script>
+	<script src="js/widget-scroller.js"></script>
+
+	<style id="css">/* Fixed column scroll bar spacer styling */
+		.tablesorter-scroller-bar-spacer {
+		background: #eee;
+		}
+	
+
+	</style>
+
+	<script id="js">
+	$(function(){
+
+		var $table = $('table'),
+			// define pager options
+			pagerOptions = {
+			// target the pager markup - see the HTML block below
+			container: $(".pager"),
+			// output string - default is '{page}/{totalPages}';
+			// possible variables: {size}, {page}, {totalPages}, {filteredPages}, {startRow}, {endRow}, {filteredRows} and {totalRows}
+			// also {page:input} & {startRow:input} will add a modifiable input in place of the value
+			output: '{startRow} - {endRow} / {filteredRows} ({totalRows})',
+			// if true, the table will remain the same height no matter how many records are displayed. The space is made up by an empty
+			// table row set to a height to compensate; default is false
+			fixedHeight: true,
+			// remove rows from the table to speed up the sort of large tables.
+			// setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
+			removeRows: false,
+			// go to page selector - select dropdown that sets the current page
+			cssGoto: '.gotoPage'
+			};
+
+
+		// Initialize tablesorter
+
+		$('.tablesorter').tablesorter({
+			theme: 'blue',
+			showProcessing: true,
+			headerTemplate : '{content} {icon}',
+			widgets: ['zebra', 'filter', 'scroller' ],
+			widgetOptions : {
+				scroller_height : 600,
+				// scroll tbody to top after sorting
+				scroller_upAfterSort: true,
+				// pop table header into view while scrolling up the page
+				scroller_jumpToHeader: true,
+				// In tablesorter v2.19.0 the scroll bar width is auto-detected
+				// add a value here to override the auto-detected setting
+				scroller_barWidth : null
+				// scroll_idPrefix was removed in v2.18.0
+				// scroller_idPrefix : 's_'
+			}
+		}).tablesorterPager(pagerOptions);
+
+	});
+	</script>
+
+</head>
+
+<body>
+
+	<header>Ordenes de Transporte</header>
+
+	<nav><div id="option">Menu Principal</div><div id="option">Otro menu</div></nav>
+
+	<div id="container">
+		<section>
+
+			<div class="pager">
+				Pag: <select class="gotoPage"></select>
+				<img src="images/first.png" class="first" alt="First" title="First page" />
+				<img src="images/prev.png" class="prev" alt="Prev" title="Previous page" />
+				<span class="pagedisplay"></span> <!-- this can be any element, including an input -->
+				<img src="images/next.png" class="next" alt="Next" title="Next page" />
+				<img src="images/last.png" class="last" alt="Last" title= "Last page" />
+				<select class="pagesize">
+					<option value="10">10</option>
+					<option value="20">20</option>
+					<option value="30">30</option>
+					<option value="40">40</option>
+				</select>
+			</div>
+
+
+
+			<!-- TABLE -->	
+			<table id="scroller1" class="tablesorter" cellspacing="0" width="100%">
+			<thead>
+			<tr>
+			<th></th>
+			<th>Tarima</th>
+			<th>Origen</th>
+			<th>Destino</th>
+			<th>Ejecutable</th>
+			<th>Estado</th>
+			<th>Codigo SOC</th>
+			<th>Tipo</th>
+			<th>Modificado</th>
+			</tr> 
+			</thead>
+
+			<tbody>
+			<tr><td>1</td><td>45454545455454s345454ghkjgjhjl54</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td>8</td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td>87878787877878</td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+			</tbody>
+			</table>
+			<!-- END TABLE -->
+		</section>
+	</div> <!--Content-->
+	
+
+</body>
+
+
+</html>
