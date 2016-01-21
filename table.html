@@ -19,13 +19,7 @@
 	<script src="js/jquery.tablesorter.widgets.js"></script>
 	<script src="js/widget-scroller.js"></script>
 
-	<style id="css">/* Fixed column scroll bar spacer styling */
-		.tablesorter-scroller-bar-spacer {
-		background: #eee;
-		}
 	
-
-	</style>
 
 	<script id="js">
 	$(function(){
@@ -41,7 +35,7 @@
 			output: '{startRow} - {endRow} / {filteredRows} ({totalRows})',
 			// if true, the table will remain the same height no matter how many records are displayed. The space is made up by an empty
 			// table row set to a height to compensate; default is false
-			fixedHeight: true,
+			fixedHeight: false,
 			// remove rows from the table to speed up the sort of large tables.
 			// setting this to false, only hides the non-visible rows; needed if you plan to add/remove rows with the pager enabled.
 			removeRows: false,
@@ -56,7 +50,7 @@
 			theme: 'blue',
 			showProcessing: true,
 			headerTemplate : '{content} {icon}',
-			widgets: ['zebra', 'filter', 'scroller' ],
+			widgets: ['zebra', 'filter', 'scroller' ,'columns', 'stickyHeaders' ],
 			widgetOptions : {
 				scroller_height : 600,
 				// scroll tbody to top after sorting
@@ -93,17 +87,17 @@
 				<img src="images/next.png" class="next" alt="Next" title="Next page" />
 				<img src="images/last.png" class="last" alt="Last" title= "Last page" />
 				<select class="pagesize">
-					<option value="10">10</option>
-					<option value="20">20</option>
-					<option value="30">30</option>
 					<option value="40">40</option>
+					<option value="20">20</option>
+					<option value="10">10</option>
+
 				</select>
 			</div>
 
 
 
 			<!-- TABLE -->	
-			<table id="table" class="tablesorter" cellspacing="0" width="100%">
+			<table id="table" class="tablesorter" cellspacing="0">
 			<thead>
 			<tr>
 			<th></th>
