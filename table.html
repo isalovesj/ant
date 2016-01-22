@@ -66,6 +66,14 @@
 		/* Add min column width, or "Index" column filter gets too narrow to use */
 		min-width: 60px;
 	}
+
+		/* CSS for hover row & select/lock the row with color */
+	table.tablesorter tbody tr:hover td {
+	    background-color: #f4f5f6;
+	}
+	table.tablesorter tbody tr.selected td {
+	    background-color: #2779AA;
+	}
 	</style>
 
 	<script id="js">$(function(){
@@ -90,8 +98,11 @@
 			};
 
 
-		// Initialize tablesorter
+		$( "table.tablesorter tbody tr" ).click(function() {
+	      $( this ).toggleClass( "selected" );
+	    });
 
+		// Initialize tablesorter
 
 	$('.tablesorter').tablesorter({
 		theme: 'blue',
