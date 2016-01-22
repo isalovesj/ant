@@ -3,26 +3,72 @@
 <head>
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=2.0">
 
-	<!-- jQuery basic -->
+		<!-- jQuery -->
 	<script src="js/jquery-latest.min.js"></script>
-	<script src="js/jquery-ui.min.js"></script>
 
-	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- Demo stuff -->
+	<link class="ui-theme" rel="stylesheet" href="css/jquery-ui.min.css">
+	<script src="js/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="css/jq.css">
+
+
+	<!-- Tablesorter: theme -->
+	<link class="ui-theme" rel="stylesheet" href="css/theme.jui.css">
 	<link class="theme blue" rel="stylesheet" href="css/theme.blue.css">
 	<link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
 
-	<!-- Tablesorter:-->
+
+	<!-- Tablesorter script: required -->
 	<script src="js/jquery.tablesorter.js"></script>
-	<script src="js/jquery.tablesorter.pager.js"></script>
 	<script src="js/jquery.tablesorter.widgets.js"></script>
 	<script src="js/widget-scroller.js"></script>
+	<script src="js/jquery.tablesorter.pager.js"></script>
 
-	
+	<link rel="stylesheet" href="css/style.css">
 
-	<script id="js">
-	$(function(){
+	<style id="css">
+		/* Fixed column scroll bar spacer styling */
+	.tablesorter-scroller-bar-spacer {
+		background: #eee;
+	}
+	/* add border to right side (LTR pages) of fixed column */
+	.tablesorter-scroller-fixed:after {
+		content: '';
+		border-right: 1px solid #444;
+		width: 1px;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		z-index: 2;
+		/* set to zero for non-jquery ui themes; use "left" here for RTL pages */
+		right: 0;
+		/* match the margins set to the table to keep the border the same height as the table */
+		margin: 10px 0 15px;
+	}
+
+	/* using-x-theme added by the demo code */
+	.using-jui-theme .tablesorter-scroller-fixed:after {
+		/* set to -2px for jquery ui themes; use "left" here for RTL pages */
+		right: -2px;
+	}
+	.using-green-theme .tablesorter-scroller-fixed:after,
+	.using-black-ice-theme .tablesorter-scroller-fixed:after,
+	.using-dark-theme .tablesorter-scroller-fixed:after,
+	.using-dropbox-theme .tablesorter-scroller-fixed:after {
+		/* match the margins set to the table to keep the border the same height as the table */
+		margin: 0;
+	}
+
+	/* OPTIONAL CSS! */
+	#fixed-columns-table tbody td {
+		/* force "Notes" column to not wrap, so we get a horizontal scrolling demo! */
+		white-space: nowrap;
+		/* Add min column width, or "Index" column filter gets too narrow to use */
+		min-width: 60px;
+	}
+	</style>
+
+	<script id="js">$(function(){
 
 		var $table = $('table'),
 			// define pager options
@@ -46,27 +92,29 @@
 
 		// Initialize tablesorter
 
-		$('.tablesorter').tablesorter({
-			theme: 'blue',
-			showProcessing: true,
-			headerTemplate : '{content} {icon}',
-			widgets: ['zebra', 'filter', 'scroller' ,'columns', 'stickyHeaders' ],
-			widgetOptions : {
-				scroller_height : 600,
-				// scroll tbody to top after sorting
-				scroller_upAfterSort: true,
-				// pop table header into view while scrolling up the page
-				scroller_jumpToHeader: true,
-				// In tablesorter v2.19.0 the scroll bar width is auto-detected
-				// add a value here to override the auto-detected setting
-				scroller_barWidth : null
-				// scroll_idPrefix was removed in v2.18.0
-				// scroller_idPrefix : 's_'
-			}
-		}).tablesorterPager(pagerOptions);
 
-	});
-	</script>
+	$('.tablesorter').tablesorter({
+		theme: 'blue',
+		showProcessing: true,
+		headerTemplate : '{content} {icon}',
+		widgets: [ 'uitheme', 'zebra', 'filter', 'scroller' ],
+		widgetOptions : {
+			scroller_height : 600,
+			// scroll tbody to top after sorting
+			scroller_upAfterSort: true,
+			// pop table header into view while scrolling up the page
+			scroller_jumpToHeader: true,
+			// In tablesorter v2.19.0 the scroll bar width is auto-detected
+			// add a value here to override the auto-detected setting
+			scroller_barWidth : null
+			// scroll_idPrefix was removed in v2.18.0
+			// scroller_idPrefix : 's_'
+		}
+	}).tablesorterPager(pagerOptions);
+
+
+});
+</script>
 
 </head>
 
@@ -88,61 +136,79 @@
 				<img src="images/last.png" class="last" alt="Last" title= "Last page" />
 				<select class="pagesize">
 					<option value="40">40</option>
-					<option value="20">20</option>
-					<option value="10">10</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
 
 				</select>
 			</div>
 
 
 
-			<!-- TABLE -->	
-			<table id="table" class="tablesorter" cellspacing="0">
-			<thead>
+	<!-- TABLE -->	
+	<table id="table" class="tablesorter">
+		<thead>
 			<tr>
-			<th></th>
-			<th>Tarima</th>
-			<th>Origen</th>
-			<th>Destino</th>
-			<th>Ejecutable</th>
-			<th>Estado</th>
-			<th>Codigo SOC</th>
-			<th>Tipo</th>
-			<th>Modificado</th>
-			</tr> 
-			</thead>
-
-			<tbody>
-			<tr><td>1</td><td>45454545455454s345454ghkjgjhjl54</td><td>a</td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td>8</td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td>87878787877878</td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			<tr><td>1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-			</tbody>
-			</table>
-			<!-- END TABLE -->
-		</section>
-	</div> <!--Content-->
+				<th class="num"></th>
+				<th class="Unidades">Unidades de Transporte</th>
+				<th class="Ubicacion">Ubicacion</th>
+				<th class="Descripcion">Descripcion</th>
+				<th class="Clasificacion">Clasificacion</th>
+				<th class="Capacidad">Capacidad</th>
+				<th class="Estado">Estado</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>80</td><td>70</td><td>75</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>90</td><td>88</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>85</td><td>95</td><td>80</td><td>85</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>60</td><td>55</td><td>100</td><td>100</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>68</td><td>80</td><td>95</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>85</td><td>6800</td><td>90</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>100</td><td>90</td><td>90</td><td>85</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>80</td><td>50</td><td>65</td><td>75</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>85</td><td>100</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>86</td><td>85</td><td>100</td><td>100</td></tr>
+			<tr><td>1</td><td>SRM987ssssssssssss</td><td>CS798</td><td>100</td><td>75</td><td>70</td><td>85</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>80</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>50</td><td>45</td><td>55</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>95</td><td>35</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>50</td><td>30</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>80</td><td>100</td><td>55</td><td>65</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>30</td><td>49</td><td>55</td><td>75</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>68</td><td>90</td><td>88</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>40</td><td>45</td><td>40</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>50</td><td>45</td><td>100</td><td>100</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>85</td><td>80</td><td>80</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>80</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>50</td><td>45</td><td>55</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>95</td><td>35</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>50</td><td>30</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>80</td><td>100</td><td>55</td><td>65</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>30</td><td>49</td><td>55</td><td>75</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>68</td><td>90</td><td>88</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>40</td><td>45</td><td>40</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>50</td><td>45</td><td>100</td><td>100</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>85</td><td>80</td><td>80</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>80</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>50</td><td>45</td><td>55</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>95</td><td>35</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>100</td><td>50</td><td>30</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>80</td><td>100</td><td>55</td><td>65</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>30</td><td>49</td><td>55</td><td>75</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>68</td><td>90</td><td>88</td><td>70</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>40</td><td>45</td><td>40</td><td>80</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS744</td><td>50</td><td>45</td><td>100</td><td>100</td></tr>
+			<tr><td>1</td><td>SRM987</td><td>CS744</td><td>100</td><td>99</td><td>100</td><td>90</td></tr>
+			<tr><td>1</td><td>SRM787</td><td>CS798</td><td>85</td><td>80</td><td>80</td><td>80</td></tr>
+	</tbody>
+	</table>
+	<!-- END TABLE -->
+	</section>
+	</div> <!--Container-->
 	
 
 </body>

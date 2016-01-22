@@ -69,7 +69,7 @@
 			pageReset: 0,
 
 			// Number of visible rows
-			size: 40,
+			size: 10,
 
 			// Number of options to include in the pager number selector
 			maxOptionSize: 20,
