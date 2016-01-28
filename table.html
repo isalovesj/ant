@@ -6,7 +6,7 @@
 		<!-- jQuery -->
 	<script src="js/jquery-latest.min.js"></script>
 
-	<!-- Demo stuff -->
+	<!-- Page stuff -->
 	<link class="ui-theme" rel="stylesheet" href="css/jquery-ui.min.css">
 	<script src="js/jquery-ui.min.js"></script>
 	<link rel="stylesheet" href="css/jq.css">
@@ -14,8 +14,6 @@
 
 	<!-- Tablesorter: theme -->
 	<link class="ui-theme" rel="stylesheet" href="css/theme.jui.css">
-	<link class="theme blue" rel="stylesheet" href="css/theme.blue.css">
-	<link class="theme ice" rel="stylesheet" href="css/theme.ice.css">
 	<link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
 
 
@@ -29,6 +27,8 @@
 
 
 	<script id="js">$(function(){
+
+		var row_selected=0;
 
 		var $table = $('table'),
 			// define pager options
@@ -50,10 +50,14 @@
 			};
 
 
+			
+
 		$( "table.tablesorter tbody tr" ).click(function() {
 	      $( this ).toggleClass( "selected" );
-	    });
 
+	  		
+	    });
+	
 		// Initialize tablesorter
 
 	$('.tablesorter').tablesorter({
